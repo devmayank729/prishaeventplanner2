@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XCEEDJS Events - Premier Event & Wedding Planners</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* XCEEDJS Style Guide Integration */
+        :root {
+            --brand-primary: #6C2BD9; /* Brand Purple */
+            --brand-accent: #16A34A;  /* Action Green */
+            --text-heading: #1F2937;
+            --text-body: #4B5563;
+            --bg-light: #F9FAFB;
+            --border-color: #E5E7EB;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-body);
+            background-color: var(--bg-light);
+        }
+
+        .font-poppins {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-heading);
+        }
+
+        .card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            border: 1px solid var(--border-color);
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 20px 25px -5px rgba(108, 43, 217, 0.1), 0 10px 10px -5px rgba(108, 43, 217, 0.08);
+        }
+        
+        /* Modal Transitions */
+        .modal-backdrop { transition: opacity 0.3s ease-in-out; }
+        .modal-content { transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out; }
+
+        /* Custom Slider Thumb */
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none; appearance: none;
+            width: 24px; height: 24px;
+            background: var(--brand-primary);
+            cursor: pointer; border-radius: 50%; border: 2px solid white;
+        }
+        .slider::-moz-range-thumb {
+            width: 24px; height: 24px;
+            background: var(--brand-primary);
+            cursor: pointer; border-radius: 50%; border: 2px solid white;
+        }
+        
+        /* Link Styles */
+        .brand-link {
+            color: var(--brand-primary);
+            font-weight: 500;
+        }
+        .brand-link:hover {
+            color: var(--brand-accent);
+        }
+
+        /* Carousel Styles */
+        .carousel-slide { transition: opacity 1s ease-in-out; }
+
+        /* Instagram Embed Responsive Fix */
+        .instagram-media {
+            margin: auto !important;
+            max-width: 450px !important;
+            width: 100% !important;
+            border-radius: 12px !important;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="py-4 px-6 sm:px-12 flex justify-between items-center bg-white/80 backdrop-blur-md sticky top-0 z-40 border-b border-[var(--border-color)]">
+        <div class="flex items-center space-x-4">
+            <img src="logo.png" alt="XCEEDJS Events Logo" class="h-12 w-auto">
+        </div>
+        <a href="#events" class="hidden sm:inline-block bg-[var(--brand-primary)] text-white font-bold py-2 px-5 rounded-lg transition-transform hover:scale-105">
+            Plan Your Event
+        </a>
+    </header>
+
+    <main class="overflow-x-hidden">
+        <section id="heroCarousel" class="relative w-full min-h-[80vh] overflow-hidden bg-gray-800">
+            <div class="carousel-slide absolute inset-0 opacity-100">
+                <div class="absolute inset-0 bg-black/50 z-10"></div>
+                <img src="photo1.png" class="w-full h-full object-cover" alt="Grand Wedding Entrance with smoke and dramatic lighting">
+                <div class="absolute inset-0 z-20 flex flex-col justify-center items-center text-center p-6">
+                    <h1 class="font-poppins text-4xl sm:text-6xl font-extrabold text-white leading-tight mb-4">Crafting <span class="text-[var(--brand-primary)] drop-shadow-md">Epic</span> Entrances</h1>
+                    <p class="max-w-2xl text-lg sm:text-xl text-gray-200">From grand weddings to corporate galas, we design moments that last a lifetime.</p>
+                </div>
+            </div>
+            <div class="carousel-slide absolute inset-0 opacity-0">
+                <div class="absolute inset-0 bg-black/50 z-10"></div>
+                <img src="photo2.png" class="w-full h-full object-cover" alt="Richly decorated floral mandap corner at golden hour">
+                <div class="absolute inset-0 z-20 flex flex-col justify-center items-center text-center p-6">
+                    <h1 class="font-poppins text-4xl sm:text-6xl font-extrabold text-white leading-tight mb-4">Exquisite <span class="text-[#FFD700]">Details</span>, Perfectly Executed</h1>
+                    <p class="max-w-2xl text-lg sm:text-xl text-gray-200">Every element, from floral arrangements to lighting, is curated with precision.</p>
+                </div>
+            </div>
+            <div class="carousel-slide absolute inset-0 opacity-0">
+                <div class="absolute inset-0 bg-black/50 z-10"></div>
+                <img src="photo3.png" class="w-full h-full object-cover" alt="Vibrant sangeet stage with dancers and confetti">
+                <div class="absolute inset-0 z-20 flex flex-col justify-center items-center text-center p-6">
+                    <h1 class="font-poppins text-4xl sm:text-6xl font-extrabold text-white leading-tight mb-4">Unforgettable <span class="text-[#16A34A]">Celebrations</span></h1>
+                    <p class="max-w-2xl text-lg sm:text-xl text-gray-200">We orchestrate high-energy sangeets, vibrant parties, and joyous occasions.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="events" class="py-16 sm:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="font-poppins text-3xl sm:text-4xl font-bold">Our Event Expertise</h2>
+                    <p class="text-lg mt-2">Tap any service to get a quick, personalized estimate!</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    </div>
+            </div>
+        </section>
+
+        <section class="py-16 sm:py-24 bg-[var(--bg-light)]">
+            <div class="container mx-auto px-6">
+                 <div class="text-center mb-12">
+                    <h2 class="font-poppins text-3xl sm:text-4xl font-bold">Experience the Magic</h2>
+                    <p class="text-lg mt-2">See our breathtaking client moments in action on Instagram.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="reel-container">
+                         <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DLoZsWXhOWH/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14"></blockquote>
+                    </div>
+                     <div class="reel-container">
+                         <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DEFDCAGBnTi/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14"></blockquote>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-[var(--text-heading)] text-gray-400 py-12">
+        <div class="container mx-auto px-6 text-center">
+            <div class="flex justify-center items-center space-x-6 mb-6">
+                <a href="https://wa.me/919024391398" target="_blank" class="text-4xl text-green-500 hover:text-green-400 transition-colors">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://www.instagram.com/xceedjs/" target="_blank" class="text-4xl text-pink-500 hover:text-pink-400 transition-colors">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+            <p class="font-poppins text-xl font-bold text-white">XCEEDJS Events</p>
+            <p>Fauj ka Mohalla, Jhunjhunu</p>
+            <div class="mt-8 text-sm">
+                <p>&copy; <span id="year"></span> XCEEDJS Events. All Rights Reserved.</p>
+                <p class="mt-1">Designed & Developed by <a href="https://xceedjs.com/" target="_blank" class="brand-link hover:underline">XCEEDJS</a>.</p>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <div id="estimateModal" class="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50 opacity-0 pointer-events-none modal-backdrop">
+        <div class="bg-white rounded-lg shadow-2xl p-6 sm:p-8 w-11/12 max-w-md mx-auto relative transform scale-95 opacity-0 modal-content">
+            <button id="closeModal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-800 text-2xl">&times;</button>
+
+            <h3 class="font-poppins text-2xl font-bold text-center mb-1">Get an Estimate for</h3>
+            <p id="eventName" class="text-[var(--brand-primary)] text-center font-semibold text-lg mb-6"></p>
+
+            <form id="estimateForm">
+                <div class="mb-5">
+                    <label for="people" class="block mb-2 text-sm font-medium">Number of Guests: <span id="peopleCount" class="font-bold text-[var(--brand-primary)]">100</span></label>
+                    <input id="people" type="range" min="25" max="1000" value="100" step="25" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider">
+                </div>
+
+                <div class="mb-6">
+                    <label for="budget" class="block mb-2 text-sm font-medium">Your Approx. Budget (₹)</label>
+                    <input type="number" id="budget" class="bg-gray-100 border-[var(--border-color)] text-sm rounded-lg focus:ring-[var(--brand-primary)] focus:border-[var(--brand-primary)] block w-full p-2.5" placeholder="e.g., 500000">
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                    <div>
+                        <label for="name" class="block mb-2 text-sm font-medium">Your Name</label>
+                        <input type="text" id="name" class="bg-gray-100 border-[var(--border-color)] text-sm rounded-lg focus:ring-[var(--brand-primary)] focus:border-[var(--brand-primary)] block w-full p-2.5" placeholder="Full Name" required>
+                    </div>
+                    <div>
+                        <label for="phone" class="block mb-2 text-sm font-medium">Phone Number</label>
+                        <input type="tel" id="phone" class="bg-gray-100 border-[var(--border-color)] text-sm rounded-lg focus:ring-[var(--brand-primary)] focus:border-[var(--brand-primary)] block w-full p-2.5" placeholder="10-digit number" required>
+                    </div>
+                </div>
+
+                <div class="text-center bg-[var(--bg-light)] p-4 rounded-lg mb-6">
+                    <p class="text-sm">Starting Estimate</p>
+                    <p id="estimatedPrice" class="text-3xl font-bold text-[var(--text-heading)] tracking-wider">₹1,50,000</p>
+                </div>
+
+                <button type="submit" class="w-full text-white bg-[var(--brand-primary)] hover:opacity-90 focus:ring-4 focus:outline-none focus:ring-purple-300 font-bold rounded-lg text-lg px-5 py-3 text-center transition-all">
+                    Get a Detailed Quote
+                </button>
+            </form>
+        </div>
+    </div>
+    
+    <div id="demoModal" class="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50 opacity-0 pointer-events-none modal-backdrop">
+        <div class="bg-white rounded-lg shadow-2xl p-8 w-11/12 max-w-sm mx-auto text-center relative transform scale-95 opacity-0 modal-content">
+             <h3 class="font-poppins text-2xl font-bold text-[var(--brand-primary)] mb-4">Demo Website</h3>
+             <p class="mb-6">Thank you! This is a demo. Your quote request hasn't been sent. For a real booking, please contact us directly.</p>
+             <a href="https://xceedjs.com/" target="_blank" class="inline-block text-white bg-[var(--brand-primary)] hover:opacity-90 font-bold rounded-lg px-6 py-3 transition-colors">
+                 Contact XCEEDJS
+             </a>
+             <button id="closeDemoModal" class="mt-4 text-sm text-gray-500 hover:text-gray-800">Close</button>
+        </div>
+    </div>
+
+    <script async src="//www.instagram.com/embed.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- DATA ---
+            const eventsData = [
+                // Uses photo8.png
+                { name: 'Wedding Planning', img: 'photo8.png', basePrice: 2500, description: 'Crafting the perfect beginning to your forever story, from decor to logistics.' },
+                // Uses photo9.png
+                { name: 'Sangeet & Receptions', img: 'photo9.png', basePrice: 1500, description: 'Orchestrating vibrant, high-energy celebrations guests will talk about for years.' },
+                // Uses photo7.png
+                { name: 'Birthday Parties', img: 'photo7.png', basePrice: 500, description: 'Celebrate another year of life with a bash to remember, for kids and adults alike.' },
+                // Uses photo13.png
+                { name: 'Anniversary Dinners', img: 'photo13.png', basePrice: 700, description: 'Rekindle the romance and celebrate your milestone with an intimate, elegant event.' },
+                 // Uses photo10.png
+                { name: 'Walima Receptions', img: 'photo10.png', basePrice: 1800, description: 'Host an elegant and memorable Walima reception with our expert planning.' },
+                // Uses photo5.png
+                { name: 'Mehndi / Haldi', img: 'photo5.png', basePrice: 600, description: 'Organizing colorful and traditional pre-wedding ceremonies with beautiful decor.' },
+                // Uses photo4.png
+                { name: 'Corporate Events', img: 'photo4.png', basePrice: 2000, description: 'Executing flawless corporate events, from conferences to galas, with style.' },
+                // Uses photo6.png
+                { name: 'Nikah Ceremonies', img: 'photo6.png', basePrice: 900, description: 'Arrange a simple, elegant, and spiritually beautiful Nikah ceremony.' },
+                // Uses photo14.png
+                { name: 'Kuan Poojan', img: 'photo14.png', basePrice: 400, description: 'A sacred and beautiful ceremony to welcome and bless your newborn.' },
+            ];
+
+            const eventsContainer = document.querySelector('#events .grid');
+            const modal = document.getElementById('estimateModal');
+            const demoModal = document.getElementById('demoModal');
+            const closeModalBtn = document.getElementById('closeModal');
+            const closeDemoModalBtn = document.getElementById('closeDemoModal');
+            const eventNameEl = document.getElementById('eventName');
+            const peopleSlider = document.getElementById('people');
+            const peopleCountEl = document.getElementById('peopleCount');
+            const estimatedPriceEl = document.getElementById('estimatedPrice');
+            const estimateForm = document.getElementById('estimateForm');
+            const carouselSlides = document.querySelectorAll('#heroCarousel .carousel-slide');
+            
+            let currentEventBasePrice = 0;
+            let currentSlide = 0;
+
+            // --- FUNCTIONS ---
+
+            // Hero Carousel
+            function showSlide(index) {
+                carouselSlides.forEach((slide, i) => {
+                    slide.style.opacity = i === index ? '1' : '0';
+                });
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % carouselSlides.length;
+                showSlide(currentSlide);
+            }
+
+            // Populate event cards
+            function renderEvents() {
+                eventsContainer.innerHTML = '';
+                eventsData.forEach(event => {
+                    const cardHTML = `
+                        <div class="card bg-white rounded-lg overflow-hidden shadow-md cursor-pointer" data-event-name="${event.name}" data-base-price="${event.basePrice}">
+                            <img src="${event.img}" alt="${event.name}" class="w-full h-56 object-cover">
+                            <div class="p-6">
+                                <h3 class="font-poppins text-xl font-bold mb-2">${event.name}</h3>
+                                <p class="text-sm">${event.description}</p>
+                            </div>
+                        </div>
+                    `;
+                    eventsContainer.insertAdjacentHTML('beforeend', cardHTML);
+                });
+            }
+
+            // Update price estimate
+            function updateEstimate() {
+                const people = parseInt(peopleSlider.value);
+                const price = people * currentEventBasePrice;
+                peopleCountEl.textContent = people;
+                estimatedPriceEl.textContent = `₹${price.toLocaleString('en-IN')}`;
+            }
+
+            // Open Modal
+            function openModal(name, basePrice) {
+                eventNameEl.textContent = name;
+                currentEventBasePrice = parseInt(basePrice);
+                peopleSlider.value = 100;
+                estimateForm.reset();
+                updateEstimate();
+                
+                modal.classList.remove('opacity-0', 'pointer-events-none');
+                modal.querySelector('.modal-content').classList.remove('scale-95', 'opacity-0');
+            }
+
+            // Close Modal
+            function closeModal() {
+                modal.classList.add('opacity-0');
+                modal.querySelector('.modal-content').classList.add('scale-95', 'opacity-0');
+                setTimeout(() => {
+                    modal.classList.add('pointer-events-none');
+                }, 300);
+            }
+            
+            // Open Demo Reminder Modal
+            function openDemoModal() {
+                demoModal.classList.remove('opacity-0', 'pointer-events-none');
+                demoModal.querySelector('.modal-content').classList.remove('scale-95', 'opacity-0');
+            }
+
+            // Close Demo Reminder Modal
+            function closeDemoModal() {
+                 demoModal.classList.add('opacity-0');
+                 demoModal.querySelector('.modal-content').classList.add('scale-95', 'opacity-0');
+                 setTimeout(() => {
+                     demoModal.classList.add('pointer-events-none');
+                 }, 300);
+            }
+
+            // --- EVENT LISTENERS ---
+            
+            eventsContainer.addEventListener('click', (e) => {
+                const card = e.target.closest('.card');
+                if (card) {
+                    const eventName = card.dataset.eventName;
+                    const basePrice = card.dataset.basePrice;
+                    openModal(eventName, basePrice);
+                }
+            });
+
+            peopleSlider.addEventListener('input', updateEstimate);
+            closeModalBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+
+            estimateForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                closeModal();
+                setTimeout(openDemoModal, 350);
+            });
+            
+            closeDemoModalBtn.addEventListener('click', closeDemoModal);
+            demoModal.addEventListener('click', (e) => {
+                if(e.target === demoModal) closeDemoModal();
+            });
+
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // --- INITIALIZATION ---
+            renderEvents();
+            setInterval(nextSlide, 5000); // Auto-play carousel every 5 seconds
+        });
+    </script>
+</body>
+</html>
